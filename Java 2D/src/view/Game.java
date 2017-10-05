@@ -17,4 +17,8 @@ public class Game extends JFrame {
         setLocationRelativeTo(null);
 	}
 
+	public void loop() {
+		view.invalidate();
+	}
+
 }

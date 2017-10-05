@@ -21,6 +21,7 @@ public abstract class Main {
             @Override
             public void run() {
                 game.setVisible(true);
+                game.loop();
             }
         });
 	}
