@@ -21,7 +21,13 @@ public abstract class Main {
 			@Override
 			public void run() {
 				game.buildGUI();
-				game.loop();
+				Thread thread = new Thread(new Runnable() {
+					@Override
+					public void run() {
+						game.loop();
+					}
+				});
+				thread.start();
 			}
 		});
 	}

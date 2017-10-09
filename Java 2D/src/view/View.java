@@ -63,7 +63,6 @@ public class View extends Canvas {
 
 				// Display the buffer
 				strategy.show();
-
 				// Repeat the rendering if the drawing buffer was lost
 			} while (strategy.contentsLost());
 		}

@@ -20,10 +20,7 @@ public class Controller implements MouseListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		switch(arg0.getKeyCode()) {
-		case KeyEvent.VK_ESCAPE:
-			view.toggleAnimationActive();
-		}
+		System.out.println(arg0.getKeyCode());
 	}
 
 	@Override
