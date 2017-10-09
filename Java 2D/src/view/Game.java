@@ -1,5 +1,8 @@
 package view;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class Game extends JFrame {
@@ -10,15 +13,23 @@ public class Game extends JFrame {
 
 	public Game(View view) {
 		this.view = view;
-		setContentPane(view);
-		setSize(WIDTH, HEIGHT);
-		setTitle("Java 2D");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+	}
+
+	public void buildGUI() {
+		view.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+		this.add(view, BorderLayout.CENTER);
+
+		this.setTitle("Java 2D");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.pack();
+
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 
 	public void loop() {
-		view.invalidate();
+		view.loop();
 	}
 
 }

@@ -11,19 +11,18 @@ public abstract class Main {
 
 	public static void main(String[] args) {
 		Model model = new Model();
-		Controller controller = new Controller(model);
+		Controller controller = new Controller(model, null);
 		View view = new View(model, controller);
+		controller.setView(view);
 		model.setView(view);
-		
 		Game game = new Game(view);
 		
 		EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                game.setVisible(true);
-                game.loop();
-            }
-        });
+			@Override
+			public void run() {
+				game.buildGUI();
+				game.loop();
+			}
+		});
 	}
-
 }
