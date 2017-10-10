@@ -1,14 +1,15 @@
 package model;
 
-import java.awt.Point;
 import java.util.ArrayList;
 
 import view.View;
 
-public class Model {
+public abstract class Model {
 	
-	private ArrayList<Visitable> objects;
-	private View view;
+	protected ArrayList<Visitable> objects;
+	protected View view;
+	protected long oldTimeMillis = 0;
+	protected long deltaTime = 20; // Equivalent to 50 fps
 	
 	public Model() {
 		this(null);
@@ -24,9 +25,9 @@ public class Model {
 		this.view = view;
 	}
 	
-	public void buildModel() {
-		objects.add(new Player(20, 50, new Point(100, 100)));
-	}
+	public abstract void buildModel();
+	
+	public abstract void update();
 	
 	public ArrayList<Visitable> getObjects() {
 		return objects;

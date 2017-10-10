@@ -53,6 +53,9 @@ public class View extends Canvas {
 
 					// Render to graphics
 					// ...
+					
+					model.update();
+					
 					this.paint(graphics);
 					// Dispose the graphics
 					graphics.dispose();

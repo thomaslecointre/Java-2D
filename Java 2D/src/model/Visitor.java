@@ -12,7 +12,6 @@ public class Visitor {
 	
 	public Visitor(Model model) {
 		this.model = model;
-		color = Color.BLACK;
 	}
 	
 	public void visitObjects(Graphics g) {
@@ -41,5 +40,9 @@ public class Visitor {
 		g.drawLine(rightLeg.x1, rightLeg.y1, rightLeg.x2, rightLeg.y2);
 		g.drawLine(chest.x1, chest.y1, chest.x2, chest.y2);
 	
+	}
+
+	public void visitFloor(Floor floor) {
+		g.drawLine(floor.x1, floor.y1, floor.x2, floor.y2);
 	}
 }

@@ -4,13 +4,14 @@ import java.awt.EventQueue;
 
 import controller.Controller;
 import model.Model;
+import model.TranslationModel;
 import view.Game;
 import view.View;
 
 public abstract class Main {
 
 	public static void main(String[] args) {
-		Model model = new Model();
+		Model model = new TranslationModel();
 		Controller controller = new Controller(model, null);
 		View view = new View(model, controller);
 		controller.setView(view);
