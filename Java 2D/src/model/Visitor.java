@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import view.Game;
+
 public class Visitor {
 	
 	private Model model;
@@ -43,6 +45,16 @@ public class Visitor {
 	}
 
 	public void visitFloor(Floor floor) {
+		g.setColor(floor.color);
+		g.fillRect(floor.x1, floor.y1, floor.x2 - floor.x1, Game.HEIGHT - floor.y1);
+		g.setColor(Color.BLACK);
 		g.drawLine(floor.x1, floor.y1, floor.x2, floor.y2);
+	}
+
+	public void visitObstacle(Obstacle obstacle) {
+		g.setColor(obstacle.color);
+		g.fillRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
+		g.setColor(Color.BLACK);
+		g.drawRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
 	}
 }

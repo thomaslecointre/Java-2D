@@ -10,6 +10,7 @@ public class TranslationModel extends Model {
 	public void buildModel() {
 		objects.add(new Player(20, 50, new Point(100, 100)));
 		objects.add(new Floor(Game.WIDTH, Game.HEIGHT));
+		objects.add(new Obstacle(100, 200, new Point(Game.WIDTH / 2, Game.HEIGHT / 2)));
 	}
 
 	@Override
@@ -20,11 +21,6 @@ public class TranslationModel extends Model {
 					Thread.sleep(1);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
-				}
-				for(Visitable object : objects) {
-					if(!(object instanceof Player)) {
-						
-					}
 				}
 			}
 		}

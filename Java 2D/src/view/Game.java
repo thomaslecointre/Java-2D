@@ -23,8 +23,8 @@ public class Game extends JFrame {
 
 		this.setTitle("Java 2D");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 		this.pack();
-
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}

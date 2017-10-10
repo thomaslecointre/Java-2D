@@ -1,12 +1,28 @@
 package model;
 
 import java.awt.Point;
+import java.awt.Rectangle;
 
 public class Player implements Visitable {
 	
 	private Point location;
 	private Head head;
 	private Body body;
+	private Rectangle bounds;
+	
+	public Rectangle getBounds() {
+		return bounds;
+	}
+	
+	private void updateBounds() {
+		int ll = body.limbLength;
+		bounds = new Rectangle(
+				Math.min(head.getLocation().x, body.rightArm.x2), 
+				head.getLocation().y, 
+				Math.max(head.radius*2, ll), 
+				(int) (head.radius*2 + ll + Math.sqrt(ll*ll*3/4))
+				);
+	}
 	
 	public Head getHead() {
 		return head;
@@ -24,6 +40,7 @@ public class Player implements Visitable {
 		this.location = location;
 		head = new Head(radius, location);
 		body = new Body(radius, limbLength, location);
+		updateBounds();
 	}
 	
 	public void translate(int dx, int dy) {
