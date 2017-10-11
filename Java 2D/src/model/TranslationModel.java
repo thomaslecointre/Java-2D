@@ -14,14 +14,11 @@ public class TranslationModel extends Model {
 	}
 
 	@Override
-	public void update() {
-		if(oldTimeMillis != 0) {
-			while(System.currentTimeMillis() - oldTimeMillis < deltaTime) {
-				try {
-					Thread.sleep(1);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+	public void update(int xTranslation, int yTranslation) {
+		for(Visitable object : objects) {
+			if(object instanceof Player) {
+				Player player = (Player) object;
+				player.translate(xTranslation, yTranslation);
 			}
 		}
 	}

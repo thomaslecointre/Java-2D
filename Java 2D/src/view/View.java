@@ -14,6 +14,8 @@ public class View extends Canvas {
 	private Controller controller;
 	private Visitor visitor;
 	private boolean animationIsActive = true;
+	private long oldTimeMillis = 0;
+	private final int xTranslationRate = -20;
 	
 	public void toggleAnimationActive() {
 		animationIsActive = !animationIsActive;
@@ -29,10 +31,20 @@ public class View extends Canvas {
 
 	@Override
 	public void paint(Graphics g) {
+		long currentTimeMillis = System.currentTimeMillis();
+		if(oldTimeMillis != 0) {
+			long deltaTime = currentTimeMillis - oldTimeMillis;
+			int xTranslation = (int) (deltaTime * xTranslationRate);
+			g.translate(xTranslation, 0);
+			model.update(xTranslation, 0);
+		}
 		visitor.visitObjects(g);
+		oldTimeMillis = currentTimeMillis;
 	}
 	
 	public void loop() {
+		
+		
 		this.createBufferStrategy(2);
 		BufferStrategy strategy = this.getBufferStrategy();
 		
@@ -50,11 +62,8 @@ public class View extends Canvas {
 					// Get a new graphics context every time through the loop
 					// to make sure the strategy is validated
 					Graphics graphics = strategy.getDrawGraphics();
-
 					// Render to graphics
 					// ...
-					
-					model.update();
 					
 					this.paint(graphics);
 					// Dispose the graphics
@@ -66,9 +75,17 @@ public class View extends Canvas {
 
 				// Display the buffer
 				strategy.show();
+				
+				try {
+					Thread.sleep(20);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
 				// Repeat the rendering if the drawing buffer was lost
 			} while (strategy.contentsLost());
 		}
+		
 	}
 	
 }

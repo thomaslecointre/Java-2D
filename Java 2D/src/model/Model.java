@@ -9,7 +9,6 @@ public abstract class Model {
 	protected ArrayList<Visitable> objects;
 	protected View view;
 	protected long oldTimeMillis = 0;
-	protected long deltaTime = 20; // Equivalent to 50 fps
 	
 	public Model() {
 		this(null);
@@ -27,7 +26,7 @@ public abstract class Model {
 	
 	public abstract void buildModel();
 	
-	public abstract void update();
+	public abstract void update(int xTranslation, int yTranslation);
 	
 	public ArrayList<Visitable> getObjects() {
 		return objects;
