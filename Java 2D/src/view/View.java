@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -15,7 +16,11 @@ public class View extends Canvas {
 	private Visitor visitor;
 	private boolean animationIsActive = true;
 	private long oldTimeMillis = 0;
-	private final int xTranslationRate = -20;
+	
+	private final int xTranslationRate = -2;
+	private int totalXTranslation = 0;
+	
+	private final int deltaTime = 50;
 	
 	public void toggleAnimationActive() {
 		animationIsActive = !animationIsActive;
@@ -31,19 +36,25 @@ public class View extends Canvas {
 
 	@Override
 	public void paint(Graphics g) {
+		super.paint(g);
 		long currentTimeMillis = System.currentTimeMillis();
 		if(oldTimeMillis != 0) {
-			long deltaTime = currentTimeMillis - oldTimeMillis;
-			int xTranslation = (int) (deltaTime * xTranslationRate);
-			g.translate(xTranslation, 0);
-			model.update(xTranslation, 0);
+			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / deltaTime);
+			if(translationMultiple > 0) {
+				int xTranslation = translationMultiple * xTranslationRate;
+				totalXTranslation += xTranslation;
+				model.update(-xTranslation, 0);
+				oldTimeMillis = currentTimeMillis;
+			}
+		} else {
+			oldTimeMillis = currentTimeMillis;
 		}
+		g.translate(totalXTranslation, 0);
 		visitor.visitObjects(g);
-		oldTimeMillis = currentTimeMillis;
 	}
 	
 	public void loop() {
-		
+
 		
 		this.createBufferStrategy(2);
 		BufferStrategy strategy = this.getBufferStrategy();
@@ -76,15 +87,10 @@ public class View extends Canvas {
 				// Display the buffer
 				strategy.show();
 				
-				try {
-					Thread.sleep(20);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				
 				// Repeat the rendering if the drawing buffer was lost
 			} while (strategy.contentsLost());
 		}
+		
 		
 	}
 	

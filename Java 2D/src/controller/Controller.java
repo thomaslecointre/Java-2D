@@ -20,7 +20,7 @@ public class Controller implements MouseListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		System.out.println(arg0.getKeyCode());
+		view.repaint();
 	}
 
 	@Override
