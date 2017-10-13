@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 import model.Model;
 import view.View;
 
-public class Controller implements MouseListener, KeyListener {
+public abstract class Controller implements MouseListener, KeyListener {
 
 	private Model model;
 	private View view;

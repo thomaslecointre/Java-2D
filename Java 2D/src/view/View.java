@@ -9,7 +9,7 @@ import controller.Controller;
 import model.Model;
 import model.Visitor;
 
-public class View extends Canvas {
+public abstract class View extends Canvas {
 
 	protected Model model;
 	protected Controller controller;
