@@ -57,11 +57,11 @@ public class Visitor {
 		Player.Body.Limb rightLeg = player.getBody().getRightLeg();
 		Player.Body.Limb chest = player.getBody().getChest();
 		
-		g.drawLine(leftArm.x1, leftArm.y1, leftArm.x2, leftArm.y2);
-		g.drawLine(rightArm.x1, rightArm.y1, rightArm.x2, rightArm.y2);
-		g.drawLine(leftLeg.x1, leftLeg.y1, leftLeg.x2, leftLeg.y2);
-		g.drawLine(rightLeg.x1, rightLeg.y1, rightLeg.x2, rightLeg.y2);
-		g.drawLine(chest.x1, chest.y1, chest.x2, chest.y2);
+		g.drawLine(leftArm.centerX, leftArm.centerY, leftArm.outerX, leftArm.outerY);
+		g.drawLine(rightArm.centerX, rightArm.centerY, rightArm.outerX, rightArm.outerY);
+		g.drawLine(leftLeg.centerX, leftLeg.centerY, leftLeg.outerX, leftLeg.outerY);
+		g.drawLine(rightLeg.centerX, rightLeg.centerY, rightLeg.outerX, rightLeg.outerY);
+		g.drawLine(chest.centerX, chest.centerY, chest.outerX, chest.outerY);
 	
 	}
 

@@ -19,11 +19,11 @@ public class TranslationView extends View {
 		super.paint(g);
 		long currentTimeMillis = System.currentTimeMillis();
 		if(oldTimeMillis != 0) {
-			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / deltaTimeRequirement);
+			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / DELTA_TIME_REQUIREMENT);
 			if(translationMultiple > 0) {
 				int xTranslation = translationMultiple * xTranslationRate;
 				totalXTranslation += xTranslation;
-				model.update(-xTranslation, 0);
+				model.update(-xTranslation);
 				oldTimeMillis = currentTimeMillis;
 			}
 		} else {

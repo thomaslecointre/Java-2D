@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import exceptions.NoFloorException;
 import exceptions.NoPlayerException;
 import view.View;
 
@@ -40,6 +41,15 @@ public abstract class Model {
 			}
 		}
 		throw new NoPlayerException();
+	}
+	
+	public Floor findFloor() throws NoFloorException {
+		for(Visitable object: objects) {
+			if(object instanceof Floor) {
+				return (Floor) object;
+			}
+		}
+		throw new NoFloorException();
 	}
 
 }

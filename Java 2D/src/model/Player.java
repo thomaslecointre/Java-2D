@@ -9,16 +9,23 @@ public class Player implements Visitable {
 	private Head head;
 	private Body body;
 	private Rectangle bounds;
+	
+	private int radius;
+	private int limbLength;
+	
 	private boolean jumping = false;
 
 	public Rectangle getBounds() {
 		return bounds;
 	}
+	
+	public int locationToFloor() {
+		return bounds.height - radius;
+	}
 
-	private void updateBounds() {
-		int ll = body.limbLength;
-		bounds = new Rectangle(Math.min(head.getLocation().x, body.rightArm.x2), head.getLocation().y,
-				Math.max(head.radius * 2, ll), (int) (head.radius * 2 + ll + Math.sqrt(ll * ll * 3 / 4)));
+	public void updateBounds() {
+		bounds = new Rectangle(Math.min(head.getLocation().x, body.rightArm.outerX), head.getLocation().y,
+				Math.max(radius * 2, limbLength), (int) (radius * 2 + limbLength + Math.sqrt(limbLength * limbLength * 3 / 4)));
 	}
 
 	public Head getHead() {
@@ -34,6 +41,8 @@ public class Player implements Visitable {
 	}
 
 	public Player(int radius, int limbLength, Point location) {
+		this.radius = radius;
+		this.limbLength = limbLength;
 		this.location = location;
 		head = new Head(radius, location);
 		body = new Body(radius, limbLength, location);
@@ -44,7 +53,7 @@ public class Player implements Visitable {
 		setLocation(this.location.x + dx, this.location.y + dy);
 	}
 
-	private void setLocation(int x, int y) {
+	public void setLocation(int x, int y) {
 		location.setLocation(x, y);
 		head.setLocation(location);
 		body.setLocation(location);
@@ -141,23 +150,23 @@ public class Player implements Visitable {
 		}
 
 		public class Limb {
-			public int x1;
-			public int y1;
-			public int x2;
-			public int y2;
+			public int centerX;
+			public int centerY;
+			public int outerX;
+			public int outerY;
 
 			public Limb(int x1, int y1, int x2, int y2) {
-				this.x1 = x1;
-				this.y1 = y1;
-				this.x2 = x2;
-				this.y2 = y2;
+				this.centerX = x1;
+				this.centerY = y1;
+				this.outerX = x2;
+				this.outerY = y2;
 			}
 
 			public void setLocation(int x1, int y1, int x2, int y2) {
-				this.x1 = x1;
-				this.y1 = y1;
-				this.x2 = x2;
-				this.y2 = y2;
+				this.centerX = x1;
+				this.centerY = y1;
+				this.outerX = x2;
+				this.outerY = y2;
 			}
 		}
 
