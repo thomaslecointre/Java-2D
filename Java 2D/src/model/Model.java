@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+import exceptions.NoPlayerException;
 import view.View;
 
 public abstract class Model {
@@ -30,6 +31,15 @@ public abstract class Model {
 	
 	public ArrayList<Visitable> getObjects() {
 		return objects;
+	}
+
+	public Player findPlayer() throws NoPlayerException {
+		for(Visitable object: objects) {
+			if(object instanceof Player) {
+				return (Player) object;
+			}
+		}
+		throw new NoPlayerException();
 	}
 
 }

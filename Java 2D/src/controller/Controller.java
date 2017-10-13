@@ -10,8 +10,8 @@ import view.View;
 
 public abstract class Controller implements MouseListener, KeyListener {
 
-	private Model model;
-	private View view;
+	protected Model model;
+	protected View view;
 
 	public Controller(Model model, View view) {
 		this.model = model;

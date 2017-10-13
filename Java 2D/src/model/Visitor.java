@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 
+import exceptions.NoPlayerException;
 import view.Game;
 
 public class Visitor {
@@ -35,13 +36,13 @@ public class Visitor {
 		}
 	}
 	
-	public Player findPlayer() {
+	public Player findPlayer() throws NoPlayerException {
 		ArrayList<Visitable> objects = model.getObjects();
 		for(Visitable object : objects) {
 			if(object instanceof Player)
 				return (Player) object;
 		}
-		return null;
+		throw new NoPlayerException();
 	}
 
 	public void visitPlayer(Player player) {

@@ -17,7 +17,7 @@ public abstract class View extends Canvas {
 	protected boolean animationIsActive = true;
 	protected long oldTimeMillis = 0;
 	
-	protected final int deltaTime = 20;
+	public static final int deltaTimeRequirement = 20;
 	
 	public void toggleAnimationActive() {
 		animationIsActive = !animationIsActive;

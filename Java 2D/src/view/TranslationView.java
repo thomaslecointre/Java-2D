@@ -19,7 +19,7 @@ public class TranslationView extends View {
 		super.paint(g);
 		long currentTimeMillis = System.currentTimeMillis();
 		if(oldTimeMillis != 0) {
-			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / deltaTime);
+			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / deltaTimeRequirement);
 			if(translationMultiple > 0) {
 				int xTranslation = translationMultiple * xTranslationRate;
 				totalXTranslation += xTranslation;

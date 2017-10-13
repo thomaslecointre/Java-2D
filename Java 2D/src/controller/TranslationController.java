@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import exceptions.NoPlayerException;
 import model.Model;
 import view.View;
 
@@ -23,8 +24,13 @@ public class TranslationController extends Controller implements MouseListener, 
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+			try {
+				model.findPlayer().jump();
+			} catch (NoPlayerException ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	@Override

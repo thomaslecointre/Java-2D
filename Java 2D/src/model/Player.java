@@ -9,6 +9,7 @@ public class Player implements Visitable {
 	private Head head;
 	private Body body;
 	private Rectangle bounds;
+	private boolean jumping = false;
 
 	public Rectangle getBounds() {
 		return bounds;
@@ -164,6 +165,18 @@ public class Player implements Visitable {
 
 	public void acceptVisitor(Visitor visitor) {
 		visitor.visitPlayer(this);
+	}
+
+	public boolean isJumping() {
+		return jumping;
+	}
+
+	public void setJumping(boolean jumping) {
+		this.jumping = jumping;
+	}
+	
+	public void jump() {
+		this.jumping = true;
 	}
 
 }

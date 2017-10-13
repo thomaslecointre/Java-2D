@@ -12,13 +12,13 @@ public class TranslationModel extends Model {
 	
 	@Override
 	public void buildModel() {
-		objects.add(new Player(20, 50, new Point(100, 100)));
+		objects.add(new Player(20, 50, new Point(100, (int) (Game.HEIGHT - 100 -(20 + 50 + Math.sqrt(50 * 50 * 3 / 4))))));
 		objects.add(new Floor(Game.WIDTH * 10, Game.HEIGHT - 100));
 		for(int i = 0; i < objectCount; i++) {
 			Random rand = new Random();
 			int randomWidth = rand.nextInt(maxObjectWidth - minObjectWidth) + minObjectWidth;
 			int randomHeight = rand.nextInt(maxObjectHeight - minObjectHeight) + minObjectHeight;
-			int randomX = rand.nextInt(Game.WIDTH * 4);
+			int randomX = rand.nextInt(Game.WIDTH * 10);
 			objects.add(new Obstacle(randomWidth, randomHeight, new Point(randomX, Game.HEIGHT - 100 - randomHeight)));
 		}
 		
