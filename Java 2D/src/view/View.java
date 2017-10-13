@@ -11,16 +11,13 @@ import model.Visitor;
 
 public class View extends Canvas {
 
-	private Model model;
-	private Controller controller;
-	private Visitor visitor;
-	private boolean animationIsActive = true;
-	private long oldTimeMillis = 0;
+	protected Model model;
+	protected Controller controller;
+	protected Visitor visitor;
+	protected boolean animationIsActive = true;
+	protected long oldTimeMillis = 0;
 	
-	private final int xTranslationRate = -2;
-	private int totalXTranslation = 0;
-	
-	private final int deltaTime = 50;
+	protected final int deltaTime = 20;
 	
 	public void toggleAnimationActive() {
 		animationIsActive = !animationIsActive;
@@ -37,20 +34,6 @@ public class View extends Canvas {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		long currentTimeMillis = System.currentTimeMillis();
-		if(oldTimeMillis != 0) {
-			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / deltaTime);
-			if(translationMultiple > 0) {
-				int xTranslation = translationMultiple * xTranslationRate;
-				totalXTranslation += xTranslation;
-				model.update(-xTranslation, 0);
-				oldTimeMillis = currentTimeMillis;
-			}
-		} else {
-			oldTimeMillis = currentTimeMillis;
-		}
-		g.translate(totalXTranslation, 0);
-		visitor.visitObjects(g);
 	}
 	
 	public void loop() {
