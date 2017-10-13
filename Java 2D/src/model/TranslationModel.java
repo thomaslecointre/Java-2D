@@ -45,7 +45,7 @@ public class TranslationModel extends Model {
 								long currentTimeMillis = System.currentTimeMillis();
 								int deltaTimeMultiple = (int) ((currentTimeMillis - oldTimeMillis) / View.DELTA_TIME_REQUIREMENT);
 								if(deltaTimeMultiple > 0) {
-									
+									player.setLocation(player.getLocation().x, cinematicEquation(deltaTimeMultiple * View.DELTA_TIME_REQUIREMENT));
 									oldTimeMillis = currentTimeMillis;
 								}
 								try {

@@ -29,6 +29,12 @@ public class TranslationView extends View {
 		} else {
 			oldTimeMillis = currentTimeMillis;
 		}
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		g.translate(totalXTranslation, 0);
 		visitor.visitObjects(g);
 	}
