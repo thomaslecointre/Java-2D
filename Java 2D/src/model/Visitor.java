@@ -45,10 +45,10 @@ public class Visitor {
 	}
 
 	public void visitFloor(Floor floor) {
-		g.setColor(floor.color);
-		g.fillRect(floor.x1, floor.y1, floor.x2 - floor.x1, Game.HEIGHT - floor.y1);
+		g.setColor(floor.groundColor);
+		g.fillRect(floor.floorLeftMostX, floor.floorY1, floor.floorRightMostX - floor.floorLeftMostX, Game.HEIGHT - floor.floorY1);
 		g.setColor(Color.BLACK);
-		g.drawLine(floor.x1, floor.y1, floor.x2, floor.y2);
+		g.drawLine(floor.floorLeftMostX, floor.floorY1, floor.floorRightMostX, floor.floorY2);
 	}
 
 	public void visitObstacle(Obstacle obstacle) {
