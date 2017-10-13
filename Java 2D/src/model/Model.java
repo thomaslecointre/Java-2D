@@ -26,7 +26,7 @@ public abstract class Model {
 	
 	public abstract void buildModel();
 	
-	public abstract void update(int xTranslation, int yTranslation);
+	public abstract void update(int... args);
 	
 	public ArrayList<Visitable> getObjects() {
 		return objects;

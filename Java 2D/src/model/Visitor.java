@@ -1,7 +1,9 @@
 package model;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 import view.Game;
@@ -51,10 +53,17 @@ public class Visitor {
 		g.drawLine(floor.floorLeftMostX, floor.floorY1, floor.floorRightMostX, floor.floorY2);
 	}
 
+	private AlphaComposite makeComposite(float alpha) {
+		  int type = AlphaComposite.SRC_OVER;
+		  return(AlphaComposite.getInstance(type, alpha));
+		 }
 	public void visitObstacle(Obstacle obstacle) {
-		g.setColor(obstacle.color);
-		g.fillRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
-		g.setColor(Color.BLACK);
-		g.drawRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
+		Graphics2D g2d= (Graphics2D)g;
+		//g.setColor(new Color(1,1,0,obstacle.alpha));.
+		g2d.setComposite(makeComposite(obstacle.alpha));
+		g2d.setColor(obstacle.color);
+		g2d.fillRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
+		g2d.setColor(Color.BLACK);
+		g2d.drawRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
 	}
 }

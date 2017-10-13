@@ -25,7 +25,9 @@ public class TranslationModel extends Model {
 	}
 
 	@Override
-	public void update(int xTranslation, int yTranslation) {
+	public void update(int... args) {
+		int xTranslation = args[0];
+		int yTranslation = args[1];
 		for(Visitable object : objects) {
 			if(object instanceof Player) {
 				Player player = (Player) object;
