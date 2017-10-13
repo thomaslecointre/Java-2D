@@ -20,7 +20,7 @@ public class Floor implements Visitable {
 		floorRightMostX = width;
 		floorY2 = height;
 		groundColor = new Color(0, 100, 0);
-		bounds = new Rectangle(0, height, width, Game.HEIGHT - height);
+		bounds = new Rectangle(0, height, width, Game.HEIGHT);
 	}
 	
 	@Override

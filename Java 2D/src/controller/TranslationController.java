@@ -18,12 +18,16 @@ public class TranslationController extends Controller implements MouseListener, 
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			try {
 				model.findPlayer().jump();
@@ -31,12 +35,6 @@ public class TranslationController extends Controller implements MouseListener, 
 				ex.printStackTrace();
 			}
 		}
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
