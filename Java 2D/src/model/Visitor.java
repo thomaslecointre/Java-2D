@@ -25,6 +25,24 @@ public class Visitor {
 			object.acceptVisitor(this);
 		}
 	}
+	
+	public void visitAllButPlayer(Graphics g) {
+		this.g = g;
+		ArrayList<Visitable> objects = model.getObjects();
+		for(Visitable object : objects) {
+			if(!(object instanceof Player))
+				object.acceptVisitor(this);
+		}
+	}
+	
+	public Player findPlayer() {
+		ArrayList<Visitable> objects = model.getObjects();
+		for(Visitable object : objects) {
+			if(object instanceof Player)
+				return (Player) object;
+		}
+		return null;
+	}
 
 	public void visitPlayer(Player player) {
 
