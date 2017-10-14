@@ -5,15 +5,18 @@ import java.awt.EventQueue;
 import controller.Controller;
 import controller.TranslationController;
 import controller.TransparentController;
+import controller.ScalingController;
 import model.Model;
 import model.TranslationModel;
 import model.TransparentModel;
+import model.ScalingModel;
 import view.Game;
 import view.TranslationView;
 import view.TransparentView;
+import view.ScalingView;
 import view.View;
 
-public abstract class Main {
+public abstract class ScalingMain {
 
 	public static void main(String[] args) {
 		/*
@@ -24,12 +27,19 @@ public abstract class Main {
 		model.setView(view);
 		*/
 		
+		Model model = new ScalingModel();
+		Controller controller = new ScalingController(model, null);
+		View view = new ScalingView(model, controller);
+		controller.setView(view);
+		model.setView(view);
+		
+		/*
 		Model model = new TransparentModel();
 		Controller controller = new TransparentController(model, null);
 		View view = new TransparentView(model, controller);
 		controller.setView(view);
 		model.setView(view);
-		
+		*/
 		Game game = new Game(view);
 		
 		EventQueue.invokeLater(new Runnable() {
