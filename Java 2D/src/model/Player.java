@@ -15,7 +15,7 @@ public class Player implements Visitable {
 	
 	private boolean jumping = false;
 	private int rotation;
-	private int size;
+	private int size = 1;
 
 	public Rectangle getBounds() {
 		return bounds;

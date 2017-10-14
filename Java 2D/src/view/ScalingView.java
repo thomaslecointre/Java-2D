@@ -29,7 +29,7 @@ public class ScalingView extends View {
 //
 //		model.update(tmpalpha);
 //		System.out.println(tmpalpha);
-		
+		/*
 		long currentTimeMillis = System.currentTimeMillis();
 		if(oldTimeMillis != 0) {
 			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / DELTA_TIME_REQUIREMENT);
@@ -49,8 +49,8 @@ public class ScalingView extends View {
 			System.out.println("problem with thread.sleep(1)");
 			e.printStackTrace();
 		}
-		visitor.visitAllButPlayer(g);
-		
+		//visitor.visitAllButPlayer(g);
+		*/
 		Player player = null;
 		try {
 			player = model.findPlayer();
@@ -59,7 +59,8 @@ public class ScalingView extends View {
 			e.printStackTrace();
 		}
 		((Graphics2D) g).scale(player.getSize(), player.getSize());
-		//((Graphics2D) g).translate(-Game.WIDTH/(2*sizex), -Game.HEIGHT/(2*sizey));
+		// ((Graphics2D) g).translate(-Game.WIDTH/(2*sizex), -Game.HEIGHT/(2*sizey));
 		visitor.visitOnlyPlayer(g);
+		//visitor.visitObjects(g);
 	}
 }
