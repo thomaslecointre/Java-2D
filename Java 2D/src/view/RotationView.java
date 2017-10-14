@@ -14,8 +14,8 @@ public class RotationView extends View {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final int xTranslationRate = 2;
-	private int totalXTranslation = 0;
+	private final int rotationRate = 2;
+	private int totalRotation = 0;
 	
 	public RotationView(Model model, Controller controller) {
 		super(model, controller);
@@ -24,18 +24,13 @@ public class RotationView extends View {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-//		tmpalpha += alphaRate*1000;
-//
-//		model.update(tmpalpha);
-//		System.out.println(tmpalpha);
-		
 		long currentTimeMillis = System.currentTimeMillis();
 		if(oldTimeMillis != 0) {
-			int translationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / DELTA_TIME_REQUIREMENT);
-			if(translationMultiple > 0) {
-				int xTranslation = translationMultiple * xTranslationRate;
-				totalXTranslation += xTranslation;
-				model.update(xTranslation);
+			int rotationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / DELTA_TIME_REQUIREMENT);
+			if(rotationMultiple > 0) {
+				int rotation = rotationMultiple * rotationRate;
+				totalRotation += rotation;
+				model.update(rotation);
 				oldTimeMillis = currentTimeMillis;
 			}
 		} else {
@@ -59,7 +54,7 @@ public class RotationView extends View {
 		}
 		float centerPlayerX = player.getBounds().width/2 + player.getLocation().x - player.getHead().getRadius();
 		float centerPlayerY = player.getBounds().height/2 + player.getLocation().y - player.getHead().getRadius();
-		((Graphics2D) g).rotate(totalXTranslation * Math.PI / 180, centerPlayerX, centerPlayerY);
-		visitor.visitOnlyPlayer(g);
+		((Graphics2D) g).rotate(totalRotation * Math.PI / 180, centerPlayerX, centerPlayerY);
+		visitor.visitPlayer(player);
 	}
 }

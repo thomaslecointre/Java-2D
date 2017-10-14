@@ -73,9 +73,10 @@ public class Visitor {
 	}
 
 	private AlphaComposite makeComposite(float alpha) {
-		  int type = AlphaComposite.SRC_OVER;
-		  return(AlphaComposite.getInstance(type, alpha));
-		 }
+		int type = AlphaComposite.SRC_OVER;
+		return(AlphaComposite.getInstance(type, alpha));
+	}
+	
 	public void visitObstacle(Obstacle obstacle) {
 		Graphics2D g2d= (Graphics2D)g;
 		//g.setColor(new Color(1,1,0,obstacle.alpha));.
@@ -85,12 +86,30 @@ public class Visitor {
 		g2d.setColor(Color.BLACK);
 		g2d.drawRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
 	}
+
+	public void visitAllObstacles(Graphics g) {
+		this.g = g;
+		ArrayList<Visitable> objects = model.getObjects();
+		for(Visitable object : objects) {
+			if (object instanceof Obstacle)
+				object.acceptVisitor(this);
+		}
+	}
 	
 	public void visitOnlyPlayer(Graphics g) {
 		this.g = g;
 		ArrayList<Visitable> objects = model.getObjects();
 		for(Visitable object : objects) {
-			if(object instanceof Player)
+			if (object instanceof Player)
+				object.acceptVisitor(this);
+		}
+	}
+	
+	public void visitOnlyFloor(Graphics g) {
+		this.g = g;
+		ArrayList<Visitable> objects = model.getObjects();
+		for(Visitable object : objects) {
+			if (object instanceof Floor)
 				object.acceptVisitor(this);
 		}
 	}
