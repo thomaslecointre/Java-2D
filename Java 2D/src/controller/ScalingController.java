@@ -8,6 +8,7 @@ import view.View;
 
 public class ScalingController extends Controller{
 
+	private int size = 2;
 	public ScalingController(Model model, View view) {
 		super(model, view);
 		// TODO Auto-generated constructor stub
@@ -17,7 +18,8 @@ public class ScalingController extends Controller{
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			try {
-				model.findPlayer().scale(2);
+				model.findPlayer().scale(size);
+				size += 2;
 			} catch (NoPlayerException ex) {
 				ex.printStackTrace();
 			}
