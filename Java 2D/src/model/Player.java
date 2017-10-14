@@ -15,6 +15,7 @@ public class Player implements Visitable {
 	
 	private boolean jumping = false;
 	private int rotation;
+	private int size;
 
 	public Rectangle getBounds() {
 		return bounds;
@@ -191,6 +192,12 @@ public class Player implements Visitable {
 
 	public void rotate(int rotation) {
 		this.rotation = rotation;
+	}
+	public void scale(int size) {
+		this.size = size;
+	}
+	public int getSize() {
+		return this.size;
 	}
 
 }
