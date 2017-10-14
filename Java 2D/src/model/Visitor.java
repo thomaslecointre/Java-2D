@@ -85,4 +85,13 @@ public class Visitor {
 		g2d.setColor(Color.BLACK);
 		g2d.drawRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
 	}
+	
+	public void visitOnlyPlayer(Graphics g) {
+		this.g = g;
+		ArrayList<Visitable> objects = model.getObjects();
+		for(Visitable object : objects) {
+			if(object instanceof Player)
+				object.acceptVisitor(this);
+		}
+	}
 }
