@@ -16,6 +16,8 @@ public class Player implements Visitable {
 	private boolean jumping = false;
 	private int rotation;
 	private int size = 1;
+	private int sheared;
+	private int transparence;
 
 	public Rectangle getBounds() {
 		return bounds;
@@ -198,6 +200,14 @@ public class Player implements Visitable {
 	}
 	public int getSize() {
 		return this.size;
+	}
+
+	public void shear(int shearing) {
+		this.sheared = shearing;
+	}
+
+	public void transparent(int transparence) {
+		this.transparence = transparence;
 	}
 
 }

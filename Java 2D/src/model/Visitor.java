@@ -113,4 +113,9 @@ public class Visitor {
 				object.acceptVisitor(this);
 		}
 	}
+
+	public void visitOnlyObject(Graphics g, Visitable visitable) {
+		this.g = g;
+		visitable.acceptVisitor(this);
+	}
 }

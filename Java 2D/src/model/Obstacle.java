@@ -12,6 +12,7 @@ public class Obstacle implements Visitable {
 	public final Color color;
 	public float alpha=1f;
 	private int shearing;
+	private float scaling;
 	
 	public Obstacle(int width, int height, Point location) {
 		this.width = width;
@@ -35,6 +36,10 @@ public class Obstacle implements Visitable {
 
 	public void shear(int shearing) {
 		this.shearing = shearing;
+	}
+
+	public void scale(float scaling) {
+		this.scaling = scaling;
 	}
 
 }
