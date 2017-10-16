@@ -76,7 +76,7 @@ public class TranslationModel extends Model {
 						}
 
 						private double cinematicEquation(long elapsedTime) {
-							final double appropriateTime = (double) elapsedTime / 1000;
+							final double appropriateTime = (double) elapsedTime / 500;
 							final int G = 1000;
 							final int INITIAL_SPEED = -1000;
 							
