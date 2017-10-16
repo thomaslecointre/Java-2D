@@ -31,6 +31,12 @@ public class Visitor {
 	public void visitPlayer(Player player) {
 		AffineTransform tx = new AffineTransform();
 		tx.rotate(player.getRotation(), player.getBounds().width/2 + player.getLocation().x - player.getHead().getRadius(), player.getBounds().height/2 + player.getLocation().y - player.getHead().getRadius());
+		
+			
+			tx.scale(player.getSize(), player.getSize());
+		if(player.getSize()!=1)
+			tx.translate(- (player.getLocation().getX()-player.getLocation().getX()/player.getSize()), -(player.getLocation().getY()-player.getLocation().getY()/player.getSize()));
+		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setTransform(tx);
 		Player.Head head = player.getHead();

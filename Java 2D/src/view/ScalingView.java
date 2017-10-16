@@ -25,7 +25,7 @@ public class ScalingView extends View {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		Player player = null;
+		/*Player player = null;
 		try {
 			player = model.findPlayer();
 			player.setLocation(Game.WIDTH/2, Game.HEIGHT/2);
@@ -38,6 +38,7 @@ public class ScalingView extends View {
 		((Graphics2D) g).scale(sizex, sizey);
 		if(sizex != 1)
 			((Graphics2D) g).translate(- (player.getLocation().getX()-player.getLocation().getX()/sizex), -(player.getLocation().getY()-player.getLocation().getY()/sizex));
+		*/
 		visitor.visitObjects(g);
 	}
 }
