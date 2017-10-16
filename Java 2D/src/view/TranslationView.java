@@ -23,19 +23,19 @@ public class TranslationView extends View {
 			if(translationMultiple > 0) {
 				int xTranslation = translationMultiple * xTranslationRate;
 				totalXTranslation += xTranslation;
-				model.update(-xTranslation);
+				model.update(totalXTranslation, 0);
 				oldTimeMillis = currentTimeMillis;
 			}
 		} else {
 			oldTimeMillis = currentTimeMillis;
 		}
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		g.translate(totalXTranslation, 0);
+		// g.translate(totalXTranslation, 0);
 		visitor.visitObjects(g);
 	}
 	

@@ -30,7 +30,7 @@ public class TranslationController extends Controller implements MouseListener, 
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_SPACE) {
 			try {
-				model.findPlayer().jump();
+				model.findPlayer().prepareToJump();
 			} catch (NoPlayerException ex) {
 				ex.printStackTrace();
 			}

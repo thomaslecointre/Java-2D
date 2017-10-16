@@ -12,7 +12,8 @@ public class Floor implements Visitable {
 	public final int floorRightMostX;
 	public final int floorY2;
 	public final Color groundColor;
-	public final Rectangle bounds;
+	private int translateY;
+	private int translateX;
 	
 	public Floor(int width, int height) {
 		floorLeftMostX = 0;
@@ -20,12 +21,30 @@ public class Floor implements Visitable {
 		floorRightMostX = width;
 		floorY2 = height;
 		groundColor = new Color(0, 100, 0);
-		bounds = new Rectangle(0, height, width, Game.HEIGHT);
 	}
 	
 	@Override
 	public void acceptVisitor(Visitor visitor) {
 		visitor.visitFloor(this);
+	}
+
+	@Override
+	public void translate(int translateX, int translateY) {
+		this.translateX = translateX;
+		this.translateY = translateY;
+	}
+
+	public double getTranslateX() {
+		return translateX;
+	}
+
+	public double getTranslateY() {
+		return translateY;
+	}
+
+	@Override
+	public Rectangle getBounds() {
+		return new Rectangle(floorLeftMostX + translateX, floorY1 + translateY, floorRightMostX - floorLeftMostX, 1);
 	}
 
 }
