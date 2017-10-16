@@ -2,6 +2,7 @@ package model;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -88,6 +89,13 @@ public class Visitor {
 		g2d.setColor(Color.BLACK);
 		g2d.drawRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
 		g2d.setTransform(new AffineTransform());
+	}
+
+	public void visitText(Text text) {
+		Graphics2D g2d = (Graphics2D) g;
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 30));
+		g2d.setComposite(makeTransparentComposite(text.getTransparency()));
+		g2d.drawString(text.getString(), text.getLocation().x, text.getLocation().y);
 	}
 
 }
