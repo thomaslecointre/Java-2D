@@ -30,6 +30,8 @@ public abstract class Model {
 	
 	public abstract void update(int... args);
 	
+	public void update(double... args) {}
+	
 	public ArrayList<Visitable> getObjects() {
 		return objects;
 	}

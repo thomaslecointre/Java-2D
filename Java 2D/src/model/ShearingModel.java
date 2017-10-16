@@ -25,11 +25,16 @@ public class ShearingModel extends Model {
 
 	@Override
 	public void update(int... args) {
-		int tmpalpha = args[0];
+		
+	}
+
+	@Override
+	public void update(double... args) {
+		double shearing = args[0];
 		for(Visitable object : objects) {
 			if(object instanceof Obstacle) {
 				Obstacle obstacle = (Obstacle) object;
-				obstacle.shear(tmpalpha);
+				obstacle.shear(shearing);
 			}
 		}
 	}

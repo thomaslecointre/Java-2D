@@ -8,27 +8,25 @@ public class Player implements Visitable {
 	private Point location;
 	private Head head;
 	private Body body;
-	private Rectangle bounds;
 	
-	private int radius;
-	private int limbLength;
+	private final int RADIUS;
+	private final int LIMB_LENGTH;
 	
+	
+	private double rotation = 0;
+	private int size = 1;
 	private boolean jumping = false;
-	private int rotation;
+	private boolean preparingToJump = false;
 
 	public Rectangle getBounds() {
-		return bounds;
+		return new Rectangle(Math.min(head.getLocation().x, body.rightArm.outerX), head.getLocation().y,
+				Math.max(RADIUS * 2, LIMB_LENGTH), (int) (RADIUS * 2 + LIMB_LENGTH + Math.sqrt(LIMB_LENGTH * LIMB_LENGTH * 3 / 4)));
 	}
 	
 	public int locationToFloor() {
-		return bounds.height - radius;
+		return getBounds().height - RADIUS;
 	}
-
-	public void updateBounds() {
-		bounds = new Rectangle(Math.min(head.getLocation().x, body.rightArm.outerX), head.getLocation().y,
-				Math.max(radius * 2, limbLength), (int) (radius * 2 + limbLength + Math.sqrt(limbLength * limbLength * 3 / 4)));
-	}
-
+	
 	public Head getHead() {
 		return head;
 	}
@@ -42,16 +40,15 @@ public class Player implements Visitable {
 	}
 
 	public Player(int radius, int limbLength, Point location) {
-		this.radius = radius;
-		this.limbLength = limbLength;
+		this.RADIUS = radius;
+		this.LIMB_LENGTH = limbLength;
 		this.location = location;
 		head = new Head(radius, location);
 		body = new Body(radius, limbLength, location);
-		updateBounds();
 	}
 
-	public void translate(int dx, int dy) {
-		setLocation(this.location.x + dx, this.location.y + dy);
+	public void translate(int translateX, int translateY) {
+		setLocation(this.location.x + translateX, this.location.y + translateY);
 	}
 
 	public void setLocation(int x, int y) {
@@ -189,8 +186,31 @@ public class Player implements Visitable {
 		this.jumping = true;
 	}
 
-	public void rotate(int rotation) {
+	public void rotate(double rotation) {
 		this.rotation = rotation;
+	}
+	
+	public double getRotation() {
+		return rotation;
+	}
+	
+	public void scale(int size) {
+		this.size = size;
+	}
+	public int getSize() {
+		return this.size;
+	}
+
+	public void prepareToJump() {
+		this.preparingToJump = true;
+	}
+
+	public boolean wantsToJump() {
+		return this.preparingToJump;
+	}
+
+	public void noLongerPreparingToJump() {
+		this.preparingToJump = false;
 	}
 
 }
