@@ -10,8 +10,8 @@ public class Obstacle implements Visitable {
 	public final int height;
 	public final Point location;
 	public final Color color;
-	public float alpha=1f;
-	private int shearing;
+	public double alpha=1f;
+	private double shearing = 0;
 	
 	public Obstacle(int width, int height, Point location) {
 		this.width = width;
@@ -29,12 +29,16 @@ public class Obstacle implements Visitable {
 		visitor.visitObstacle(this);
 	}
 
-	public void transparent(float f) {
-		alpha=f;
+	public void transparent(double tmpalpha) {
+		alpha=tmpalpha;
 	}
 
-	public void shear(int shearing) {
+	public void shear(double shearing) {
 		this.shearing = shearing;
+	}
+
+	public double getShearing() {
+		return shearing;
 	}
 
 }

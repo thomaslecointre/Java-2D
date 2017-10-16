@@ -38,7 +38,6 @@ public class ScalingView extends View {
 		((Graphics2D) g).scale(sizex, sizey);
 		if(sizex != 1)
 			((Graphics2D) g).translate(- (player.getLocation().getX()-player.getLocation().getX()/sizex), -(player.getLocation().getY()-player.getLocation().getY()/sizex));
-		visitor.visitOnlyPlayer(g);
-		//visitor.visitObjects(g);
+		visitor.visitObjects(g);
 	}
 }

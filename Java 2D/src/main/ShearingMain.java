@@ -56,7 +56,7 @@ public class ShearingMain {
 	}
 
 	public static void main(String[] args) {
-		mainWithBanana();
+		// mainWithBanana();
 		mainWithPlayer();
 	}
 

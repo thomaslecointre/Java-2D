@@ -14,12 +14,20 @@ public class RotationModel extends Model {
 
 	@Override
 	public void update(int... args) {
-		int tmpalpha = args[0];
+		
+	}
+
+	@Override
+	public void update(double... args) {
+		double rotation = args[0];
 		for(Visitable object : objects) {
 			if(object instanceof Player) {
 				Player player = (Player) object;
-				player.rotate(tmpalpha);
+				player.rotate(rotation);
 			}
 		}
 	}
+	
+	
+
 }

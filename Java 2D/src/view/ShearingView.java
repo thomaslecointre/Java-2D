@@ -19,9 +19,10 @@ public class ShearingView extends View {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final float xShearingRate = 0.001f;
-	private float totalXShearing = 0f;
-	private double totalRotation = Math.PI/180;
+	private final double xShearingRate = 0.001
+			;
+	private double totalXShearing = 0;
+	// private double totalRotation = Math.PI/180;
 
 	public ShearingView(Model model, Controller controller) {
 		super(model, controller);
@@ -34,9 +35,9 @@ public class ShearingView extends View {
 		if(oldTimeMillis != 0) {
 			int shearingMultiple = (int) ((currentTimeMillis - oldTimeMillis) / DELTA_TIME_REQUIREMENT);
 			if(shearingMultiple > 0) {
-				float xShearing = shearingMultiple * xShearingRate;
+				double xShearing = shearingMultiple * xShearingRate;
 				totalXShearing += xShearing;
-				model.update((int) xShearing);
+				model.update(totalXShearing);
 				oldTimeMillis = currentTimeMillis;
 			}
 		} else {
@@ -48,27 +49,8 @@ public class ShearingView extends View {
 		} catch (InterruptedException e) {
 			System.out.println("problem with thread.sleep(1)");
 			e.printStackTrace();
-		}
-				
-		Player player = null;
-		try {
-			player = model.findPlayer();
-		} catch (NoPlayerException e) {
-			System.out.println("shearing : player not found");
-			e.printStackTrace();
-		}
-		visitor.visitOnlyPlayer(g);
-		
-		Floor floor = null;
-		try {
-			floor = model.findFloor();
-		} catch (NoFloorException e) {
-			System.out.println("shearing : floor not found");
-			e.printStackTrace();
-		}
-		visitor.visitFloor(floor);
-		
-		((Graphics2D) g).shear(totalXShearing*2, -totalXShearing/10);
-		visitor.visitAllObstacles(g);
+		}	
+
+		visitor.visitObjects(g);
 	}
 }

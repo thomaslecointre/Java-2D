@@ -27,4 +27,19 @@ public class TransparentModel extends Model{
 			}
 		}
 	}
+
+	@Override
+	public void update(double... args) {
+		double tmpalpha = args[0];
+		for(Visitable object : objects) {
+			if(object instanceof Obstacle) {
+				
+				System.out.println(tmpalpha);
+				Obstacle obstacle = (Obstacle) object;
+				obstacle.transparent(tmpalpha);
+			}
+		}
+	}
+	
+	
 }
