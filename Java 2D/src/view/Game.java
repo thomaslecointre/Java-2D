@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class Game extends JFrame {
 
 	private View view;
-	
+
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
 

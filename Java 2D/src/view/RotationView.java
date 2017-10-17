@@ -14,9 +14,9 @@ public class RotationView extends View {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final double rotationRate = 2;
+	private final double ROTATION_RATE = 2;
 	private double totalRotation = 0;
-	
+
 	public RotationView(Model model, Controller controller) {
 		super(model, controller);
 	}
@@ -25,10 +25,10 @@ public class RotationView extends View {
 	public void paint(Graphics g) {
 		super.paint(g);
 		long currentTimeMillis = System.currentTimeMillis();
-		if(oldTimeMillis != 0) {
+		if (oldTimeMillis != 0) {
 			int rotationMultiple = (int) ((currentTimeMillis - oldTimeMillis) / DELTA_TIME_REQUIREMENT);
-			if(rotationMultiple > 0) {
-				double rotation = rotationMultiple * rotationRate;
+			if (rotationMultiple > 0) {
+				double rotation = rotationMultiple * ROTATION_RATE;
 				totalRotation += rotation;
 				model.update(totalRotation * Math.PI / 180);
 				oldTimeMillis = currentTimeMillis;
@@ -36,13 +36,7 @@ public class RotationView extends View {
 		} else {
 			oldTimeMillis = currentTimeMillis;
 		}
-		
-		try {
-			Thread.sleep(1);
-		} catch (InterruptedException e) {
-			System.out.println("problem with thread.sleep(1)");
-			e.printStackTrace();
-		}
+
 		visitor.visitObjects(g);
 	}
 }

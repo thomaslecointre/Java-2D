@@ -7,20 +7,20 @@ import view.Game;
 
 public class Floor implements Visitable {
 
-	public final int floorLeftMostX;
-	public final int floorY1;
-	public final int floorRightMostX;
-	public final int floorY2;
-	public final Color groundColor;
+	public final int FLOOR_LEFT_MOST_X;
+	public final int FLOOR_LEFT_MOST_Y;
+	public final int FLOOR_RIGHT_MOST_X;
+	public final int FLOOR_RIGHT_MOST_Y;
+	public final Color GROUND_COLOR;
 	private int translateY;
 	private int translateX;
 	
 	public Floor(int width, int height) {
-		floorLeftMostX = 0;
-		floorY1 = height;
-		floorRightMostX = width;
-		floorY2 = height;
-		groundColor = new Color(0, 100, 0);
+		FLOOR_LEFT_MOST_X = 0;
+		FLOOR_LEFT_MOST_Y = height;
+		FLOOR_RIGHT_MOST_X = width;
+		FLOOR_RIGHT_MOST_Y = height;
+		GROUND_COLOR = new Color(0, 100, 0);
 	}
 	
 	@Override
@@ -44,7 +44,7 @@ public class Floor implements Visitable {
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle(floorLeftMostX + translateX, floorY1 + translateY, floorRightMostX - floorLeftMostX, 1);
+		return new Rectangle(FLOOR_LEFT_MOST_X + translateX, FLOOR_LEFT_MOST_Y + translateY, FLOOR_RIGHT_MOST_X - FLOOR_LEFT_MOST_X, 1);
 	}
 
 }

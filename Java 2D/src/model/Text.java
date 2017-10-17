@@ -7,14 +7,14 @@ public class Text implements Visitable {
 
 	private Point location;
 	private String text;
-	private int transparency=0;
+	private int transparency = 0;
 
-	
 	public Text(Point location, String text) {
-		this.location=location;
-		this.text=text;
-		
+		this.location = location;
+		this.text = text;
+
 	}
+
 	@Override
 	public void acceptVisitor(Visitor visitor) {
 		visitor.visitText(this);
@@ -42,10 +42,12 @@ public class Text implements Visitable {
 		// TODO Auto-generated method stub
 		return text;
 	}
+
 	public void transparent(int i) {
-		this.transparency=i;
-		
+		this.transparency = i;
+
 	}
+
 	public double getTransparency() {
 		return transparency;
 	}

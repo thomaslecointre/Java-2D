@@ -16,13 +16,13 @@ import model.Model;
 public class TexturingView extends View {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	BufferedImage stone1, stone2, stone3;
 
 	public TexturingView(Model model, Controller controller) {
-		
+
 		super(model, controller);
-		
+
 		try {
 			stone1 = ImageIO.read(new File("stone1.jpg"));
 			stone2 = ImageIO.read(new File("stone2.jpg"));
@@ -31,7 +31,6 @@ public class TexturingView extends View {
 			e.printStackTrace();
 		}
 	}
-	
 
 	@Override
 	public void paint(Graphics g) {
@@ -43,13 +42,13 @@ public class TexturingView extends View {
 
 		g2d.setPaint(texture1);
 		g2d.fillRect(100, 15, 190, 160);
-		
+
 		g2d.setPaint(texture2);
 		g2d.fillRect(300, 15, 190, 160);
-		
+
 		g2d.setPaint(texture3);
 		g2d.fillRect(500, 15, 190, 160);
-		
+
 	}
 
 }

@@ -4,13 +4,10 @@ import java.awt.EventQueue;
 
 import controller.Controller;
 import controller.TranslationController;
-import controller.TransparentController;
 import model.Model;
 import model.TranslationModel;
-import model.TransparentModel;
 import view.Game;
 import view.TranslationView;
-import view.TransparentView;
 import view.View;
 
 public abstract class TranslationMain {

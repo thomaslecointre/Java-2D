@@ -63,11 +63,12 @@ public class Visitor {
 		tx.translate(floor.getTranslateX(), floor.getTranslateY());
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setTransform(tx);
-		g.setColor(floor.groundColor);
-		g.fillRect(floor.floorLeftMostX, floor.floorY1, floor.floorRightMostX - floor.floorLeftMostX,
-				Game.HEIGHT - floor.floorY1);
+		g.setColor(floor.GROUND_COLOR);
+		g.fillRect(floor.FLOOR_LEFT_MOST_X, floor.FLOOR_LEFT_MOST_Y, floor.FLOOR_RIGHT_MOST_X - floor.FLOOR_LEFT_MOST_X,
+				Game.HEIGHT - floor.FLOOR_LEFT_MOST_Y);
 		g.setColor(Color.BLACK);
-		g.drawLine(floor.floorLeftMostX, floor.floorY1, floor.floorRightMostX, floor.floorY2);
+		g.drawLine(floor.FLOOR_LEFT_MOST_X, floor.FLOOR_LEFT_MOST_Y, floor.FLOOR_RIGHT_MOST_X,
+				floor.FLOOR_RIGHT_MOST_Y);
 		g2d.setTransform(new AffineTransform());
 	}
 
@@ -82,7 +83,6 @@ public class Visitor {
 		tx.translate(obstacle.getTranslateX(), obstacle.getTranslateY());
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setTransform(tx);
-		// g.setColor(new Color(1,1,0,obstacle.alpha));.
 		g2d.setComposite(makeTransparentComposite(obstacle.alpha));
 		g2d.setColor(obstacle.color);
 		g2d.fillRect(obstacle.location.x, obstacle.location.y, obstacle.width, obstacle.height);
